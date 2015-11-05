@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>circles</title>
+  <meta charset="utf-8">
+  <script src="d3.min.js"></script>
+</head>
+<body>
+<svg width="800" height="800">
+  <circle/>
+  <circle/>
+  <circle/>
+</svg>
+<script>
+
+var circle = d3.selectAll("circle");
+circle.attr("r", 150);
+var offset = 0;
+
+function rotate() {
+  circle.attr("cx", function(d, i) { theta = offset + i * 2 * Math.PI / 3; return 400 + 200 * Math.cos(theta); });
+  circle.attr("cy", function(d, i) { theta = offset + i * 2 * Math.PI / 3; return 400 + 200 * Math.sin(theta); });
+  circle.attr("fill", function(d, i) { return d3.hsl((i + offset) * 100, .8, .5); });
+  offset += .005;
+}
+rotate();
+setInterval(rotate, 1000);
+
+</script>
+</body>
+</html>
